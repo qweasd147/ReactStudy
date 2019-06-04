@@ -1,17 +1,17 @@
 import Layout from '../components/Layout';
 import axios from 'axios';
 
-const Index = ({data})=>(
+const Page1 = ({data})=>(
     <Layout>
         <div>
-            <p>init project with nextjs</p>
+            <p>page1</p>
             <p>Data : {data}</p>
         </div>
     </Layout>
 );
 
-Index.getInitialProps = async ()=>{
-    const res = await axios.get('http://localhost:8080/api/v1/data1');
+Page1.getInitialProps = async ()=>{
+    const res = await axios.get('http://localhost:8080/api/v1/data2');
     const data = res.data;
 
     return {
@@ -19,4 +19,4 @@ Index.getInitialProps = async ()=>{
     }
 }
 
-export default Index;
+export default Page1;
