@@ -1,0 +1,19 @@
+{
+  "name": "mobx-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "mobx": "^5.10.0",
+    "mobx-react": "^6.0.3",
+    "mobx-state-tree": "^3.14.0",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
