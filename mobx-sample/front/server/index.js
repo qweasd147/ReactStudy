@@ -8,6 +8,7 @@ const mobxReact = require('mobx-react')
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+//메모리 누수 방지
 mobxReact.useStaticRendering(true)
 
 app.prepare().then(() => {
