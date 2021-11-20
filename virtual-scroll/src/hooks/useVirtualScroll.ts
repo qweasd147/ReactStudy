@@ -17,10 +17,9 @@ interface ScrollState<T> {
   viewportHeight: number;
   totalHeight: number;
   toleranceHeight: number;
-  bufferHeight: number;
-  bufferedItems: number;
-
-  initialPosition: number;
+  itemsLimit: number;
+  //initialPosition: number;
+  //bufferHeight: number;
   contents: ScrollContents<T>;
 }
 
@@ -45,7 +44,7 @@ const useVirtualScroll: UseVirtualScroll<any> = ({
   const totalHeight = (maxIndex - minIndex + 1) * itemHeight;
   const initTopPaddingHeight = itemsAbove * itemHeight;
   const initBottomPaddingHeight = totalHeight - initTopPaddingHeight;
-  const bufferedItems = itemSize + 2 * tolerance;
+  const itemsLimit = itemSize + 2 * tolerance;
 
   const [{ topPaddingHeight, bottomPaddingHeight, items }, setScrollData] =
     useState<ScrollContents<any>>({
@@ -60,7 +59,7 @@ const useVirtualScroll: UseVirtualScroll<any> = ({
 
       const index =
         minIndex + Math.floor((scrollTop - toleranceHeight) / itemHeight);
-      const items = getData(index, bufferedItems);
+      const items = getData(index, itemsLimit);
       const topPaddingHeight = Math.max((index - minIndex) * itemHeight, 0);
       const bottomPaddingHeight = Math.max(
         totalHeight - topPaddingHeight - items.length * itemHeight,
@@ -73,7 +72,7 @@ const useVirtualScroll: UseVirtualScroll<any> = ({
         items,
       });
     },
-    [bufferedItems, itemHeight, getData, minIndex, toleranceHeight, totalHeight]
+    [itemsLimit, itemHeight, getData, minIndex, toleranceHeight, totalHeight]
   );
 
   return [
@@ -81,9 +80,9 @@ const useVirtualScroll: UseVirtualScroll<any> = ({
       viewportHeight,
       totalHeight,
       toleranceHeight,
-      bufferHeight: viewportHeight + 2 * toleranceHeight,
-      bufferedItems: itemSize + 2 * tolerance,
-      initialPosition: topPaddingHeight + toleranceHeight,
+      //bufferHeight: viewportHeight + 2 * toleranceHeight,
+      //initialPosition: topPaddingHeight + toleranceHeight,
+      itemsLimit: itemSize + 2 * tolerance,
       contents: {
         items,
         topPaddingHeight,
